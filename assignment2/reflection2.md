@@ -1,8 +1,8 @@
-# Assignment 2 Reflection
+# Assignment 2 Reflection - Ben Branta
 
 ## 1. In Task 2, what might you change if you wanted to find how many prime numbers there are up to some arbitrary number, N?
 
-**Answer:** I would change from a for loop to a while loop with an index < N (while ii <= N).
+**Answer:** This will go from looping over a known quanity to an unknown quantity. I would change the top for loop to a while loop with an index < N (while ii <= N). 
 
 ---
 
@@ -20,10 +20,10 @@
 
 ## 4. What was it like to use the unit tests for this assignment?
 
-**Answer:** I spent a lot of time figuring out the unit tests for assignment one so I did not have any issues with this one. I would complete a task, then test, then move on. Finally testing everything once complete. I didn't have any issues with the unit tests for this assignment.
+**Answer:** I spent a lot of time figuring out the unit tests for the first assignment so I did not have any issues with this one. I would complete a task, then test, then move on. Finally testing everything once complete. I didn't have any issues with the unit tests for this assignment.
 
 ---
 
 ## 5. Describe one thing that you learned while working on this lesson that stood out as useful or interesting.
 
-**Answer:** In the mortgage calculator I struggled with handling the error gracefully. I ended up wrapping the function call with the try except block and raising the error in the function.
+**Answer:** In the mortgage calculator I struggled with handling the error gracefully. I ended up wrapping the function call with the try except block and raising the error in the function. I had to research this topic so I'm not exactly sure if this is the correct approach.
