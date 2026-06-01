@@ -1,0 +1,6 @@
+Diamond Clarity Counts
+IF: 44
+VVS1: 52
+VVS2: 78
+VS1: 81
+VS2: 53
