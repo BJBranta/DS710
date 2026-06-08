@@ -4,13 +4,13 @@
 
 **Answer:** In advanced fizzbuzz I did not have a validation check for if n = 0. The test case fizzbuzz__adv(0) created an infinite loop from my valuation(0, 3) call. In valuation I don't have a check if n = 0. If n = 0 then my while loop permanently evaluates to true causing the infinite loop.
 
-This was recognizable because when I test run my script it never completes. I think this breaks down into a validation problem and its a skill I haven't completely grasped yet. It is something I think about every time now.
+This was recognizable because when I test run my script it never completes. Looking ahead I think well defined test cases catch these issues. As well as looking for those conditions which can cause issues.
 
 ---
 
 ## 2. What makes a good test case for determining if a function works correctly? How do you know that your functions perform correctly?
 
-**Answer:** A good test case to me would check for valid inputs. It should check and make sure the function cannot error/crash the program or return incorrect information due to type conflicts. A good test case also validates outputs based on known inputs. If my function should return x^2 my test case should test for different values of x against the expected output. Using these two approaches to testing a function I think it should perform correctly.
+**Answer:** A good test case to me would check that the outputs are correct, corner cases are handled, and inputs are validated. It should check and make sure the function handles errors gracefully. I think a well defined function with a single purpose would perform correctly if it passes the test cases. 
 
 ---
 
