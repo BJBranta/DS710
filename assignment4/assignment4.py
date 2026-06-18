@@ -281,3 +281,147 @@ assert (
     read_and_clean("example_text.txt")
     == "this is a sentence\nthis is another sentence\nthis sentence talks about a fox and a cat and a dog\nthis sentence has a blue bird in it\nthis sentence is  winning\nthis séntence has  so much punctuation\nthis sentence smiles \nthis sentence is unclear on  to or too\nthis sentence is the end"
 )
+
+
+# Subtask 4.2 - Reading and Cleanup
+# Write a function unique_words that accepts as input a string, and returns a set of the unique words in that string. Two words that differ only in case are the same word.
+# The function discards all non-alpha non-space characters, including punctuation, and is case-insensitive by lowering all characters.
+def unique_words(s: str) -> set:
+    cleaned_string = clean(s)
+    words = cleaned_string.split()
+    unique_word_set = set(words)
+    return unique_word_set
+
+
+# Validate unique_words function
+assert unique_words(
+    "This %séntence$$ @#has ’)()()()( *so_ *so* **so** ?+much!!! punctuation.“"
+) == {"so", "séntence", "much", "punctuation", "has", "this"}
+
+
+#  Write a function num_unique_words that accepts as input a string, and returns the number of unique words in that string (an integer). Two words that differ only in case are the same word.
+#  The function discards all non-alpha non-space characters, including punctuation, and is case-insensitive by lowering all characters.
+def num_unique_words(s: str) -> int:
+    return len(unique_words(s))
+
+
+# Validate num_unique_words function
+assert (
+    num_unique_words(
+        "This %séntence$$ @#has ’)()()()( *so_ *so* **so** ?+much!!! punctuation.“"
+    )
+    == 6
+)
+
+
+# Subtask 4.4 Unique Words from a file
+# Write a function unique_words_from_file that accepts as input a filename, and returns a set of the unique words that appear in the text file that has that filename.
+# Before counting, the function discards all non-alpha non-space characters, including punctuation, and is case-insensitive by lowering all characters.
+def unique_words_from_file(filename: str) -> set:
+    cleaned_text = read_and_clean(filename)
+    return unique_words(cleaned_text)
+
+
+# Write a function num_unique_words_from_file that accepts as input a filename and returns the number of unique words that appear in the text file that has that filename.
+# Before counting, the function discards all non-alpha non-space characters, including punctuation, and is case-insensitive by lowering all characters.
+def num_unique_words_from_file(filename: str) -> int:
+    return len(unique_words_from_file(filename))
+
+
+# Validate unique_words_from_file and num_unique_words_from_file functions
+assert unique_words_from_file("example_text.txt") == {
+    "the",
+    "punctuation",
+    "sentence",
+    "séntence",
+    "and",
+    "dog",
+    "is",
+    "to",
+    "a",
+    "unclear",
+    "in",
+    "on",
+    "cat",
+    "this",
+    "winning",
+    "much",
+    "or",
+    "end",
+    "fox",
+    "it",
+    "so",
+    "smiles",
+    "too",
+    "has",
+    "blue",
+    "about",
+    "talks",
+    "another",
+    "bird",
+}
+
+assert num_unique_words_from_file("example_text.txt") == 29
+
+
+# Subtask 4.5 Word counts
+# Write a function word_counts that accepts as input a string, and returns a dictionary where words are keys and the number of instances are values of counts of the words in the string.
+# Before counting, the function discards all non-alpha non-space characters, including punctuation, and is case-insensitive by lowering all characters.
+def word_counts(s: str) -> dict:
+    cleaned_string = clean(s)
+    words = cleaned_string.split()
+    counts = {}
+    for word in words:
+        if word in counts:
+            counts[word] += 1
+        else:
+            counts[word] = 1
+    return counts
+
+
+# Validate word_counts function
+assert word_counts(
+    "This %séntence$$ @#has ’)()()()( *so_ *so* **so** ?+much!!! punctuation.“"
+) == {"this": 1, "séntence": 1, "has": 1, "so": 3, "much": 1, "punctuation": 1}
+
+
+# Subtask 4.6 Word counts from a file
+# Write a function word_counts_from_file that accepts as input a filename (a string), and returns a dictionary where words are keys and the values are counts of those words in the text file.
+# Before counting, the function discards all non-alpha non-space characters, including punctuation, and is case-insensitive by lowering all characters.
+def word_counts_from_file(filename: str) -> dict:
+    cleaned_text = read_and_clean(filename)
+    return word_counts(cleaned_text)
+
+
+# Validate word_counts_from_file function
+assert word_counts_from_file("example_text.txt") == {
+    "this": 9,
+    "is": 5,
+    "a": 5,
+    "sentence": 8,
+    "another": 1,
+    "talks": 1,
+    "about": 1,
+    "fox": 1,
+    "and": 2,
+    "cat": 1,
+    "dog": 1,
+    "has": 2,
+    "blue": 1,
+    "bird": 1,
+    "in": 1,
+    "it": 1,
+    "winning": 1,
+    "séntence": 1,
+    "so": 1,
+    "much": 1,
+    "punctuation": 1,
+    "smiles": 1,
+    "unclear": 1,
+    "on": 1,
+    "to": 1,
+    "or": 1,
+    "too": 1,
+    "the": 1,
+    "end": 1,
+}
