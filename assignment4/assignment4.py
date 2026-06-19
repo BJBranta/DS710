@@ -10,8 +10,8 @@ last_name = "Branta"
 #     elements from each of the tuples in tuple_list.
 def maximums(tuple_list):
     max_list = []
-    for tup in tuple_list:
-        max_list.append(max(tup))
+    for tup in tuple_list:  # for the tuple in the list of tuples
+        max_list.append(max(tup))  # append the maximum of that tuple to the max_list
     return max_list
 
 
@@ -29,8 +29,12 @@ assert maximums([(0,)]) == [0]  # it's not a tuple without the comma
 #   list of numeric tuples of arbitrary size, and returns the average of the maximum
 #   values of each tuple.
 def avg_of_maximums(tuple_list):
-    max_list = maximums(tuple_list)
-    return sum(max_list) / len(max_list)
+    max_list = maximums(
+        tuple_list
+    )  # call maximums to get the list of maximums for each tuple
+    return (
+        sum(max_list) / len(max_list)
+    )  # sum adds the list of tuples, len gives the number of tuples, and dividing gives the average
 
 
 # Validate avg_of_maximums function
@@ -184,8 +188,8 @@ def collatz_fizzbuzz_experiment(m: int) -> int:
     while True:  # Loop indefinitely until we find the desired n
         # Get the count of 'fizz' in the collatz_fizzbuzz for current_n
         fizz_count = collatz_fizzbuzz_counts(current_n)["fizz"]
-        # Check if the count of 'fizz' is greater than or equal to m
-        if fizz_count >= m:  # If it is, return the current n
+        # Check if the count of 'fizz' is equal to m
+        if fizz_count == m:  # If it is, return the current n
             return current_n
         # else, increment current_n and continue the loop
         current_n += 1
@@ -203,9 +207,9 @@ assert collatz_fizzbuzz_experiment(3) == 12
 # set of all non-alphabetic characters in that string.
 def non_alpha_chars(s: str) -> set:
     non_alpha_set = set()
-    for char in s:
-        if not char.isalpha():
-            non_alpha_set.add(char)
+    for char in s:  # for each character in the string
+        if not char.isalpha():  # if the character is not alphabetic
+            non_alpha_set.add(char)  # add the character to the set
     return non_alpha_set
 
 
@@ -220,9 +224,9 @@ assert non_alpha_chars(
 # Hint: use .isspace()
 def non_space_chars(s: str) -> set:
     non_space_set = set()
-    for char in s:
-        if not char.isspace():
-            non_space_set.add(char)
+    for char in s:  # for each character in the string
+        if not char.isspace():  # if the character is not a space character
+            non_space_set.add(char)  # add the character to the set
     return non_space_set
 
 
@@ -231,6 +235,7 @@ assert non_space_chars("abcd\n\t qwfp") == {"c", "w", "q", "p", "a", "d", "f", "
 
 
 #  Write a function non_alpha_non_space_chars(s) that takes as input a str of text and returns a set of all non-space non-alphabetic characters in that string.
+#  I could have called the previous two functions but I've been trying to avoid many looping or iteration based processing and that would double the required loops.
 def non_alpha_non_space_chars(s: str) -> set:
     non_alpha_non_space_set = set()
     for char in s:
@@ -259,16 +264,16 @@ assert non_alpha_non_space_chars(
 def clean(s: str) -> str:
     non_alpha_non_space = non_alpha_non_space_chars(s)
     cleaned_string = ""
-    for char in s:
+    for char in s:  # for each character in string
         if char not in non_alpha_non_space:
-            cleaned_string += char.lower()
+            cleaned_string += char.lower()  # add to cleaned string as lower case.
     return cleaned_string
 
 
 def read_and_clean(filename: str) -> str:
-    with open(filename, "r", encoding="utf-8") as file:
-        text = file.read()
-    return clean(text)
+    with open(filename, "r", encoding="utf-8") as file:  # open file as read
+        text = file.read()  # read file and save text
+    return clean(text)  # return the cleaned string
 
 
 # Validate clean and read_and_clean functions
@@ -287,9 +292,9 @@ assert (
 # Write a function unique_words that accepts as input a string, and returns a set of the unique words in that string. Two words that differ only in case are the same word.
 # The function discards all non-alpha non-space characters, including punctuation, and is case-insensitive by lowering all characters.
 def unique_words(s: str) -> set:
-    cleaned_string = clean(s)
-    words = cleaned_string.split()
-    unique_word_set = set(words)
+    cleaned_string = clean(s)  # clean and lowercase
+    words = cleaned_string.split()  # splits the string on any whitespace character
+    unique_word_set = set(words)  # using set to get the unique words
     return unique_word_set
 
 
@@ -302,7 +307,7 @@ assert unique_words(
 #  Write a function num_unique_words that accepts as input a string, and returns the number of unique words in that string (an integer). Two words that differ only in case are the same word.
 #  The function discards all non-alpha non-space characters, including punctuation, and is case-insensitive by lowering all characters.
 def num_unique_words(s: str) -> int:
-    return len(unique_words(s))
+    return len(unique_words(s))  # returns number of elements (unique words)
 
 
 # Validate num_unique_words function
@@ -318,8 +323,8 @@ assert (
 # Write a function unique_words_from_file that accepts as input a filename, and returns a set of the unique words that appear in the text file that has that filename.
 # Before counting, the function discards all non-alpha non-space characters, including punctuation, and is case-insensitive by lowering all characters.
 def unique_words_from_file(filename: str) -> set:
-    cleaned_text = read_and_clean(filename)
-    return unique_words(cleaned_text)
+    cleaned_text = read_and_clean(filename)  # read and clean the file
+    return unique_words(cleaned_text)  # return unique words
 
 
 # Write a function num_unique_words_from_file that accepts as input a filename and returns the number of unique words that appear in the text file that has that filename.
@@ -368,14 +373,14 @@ assert num_unique_words_from_file("example_text.txt") == 29
 # Write a function word_counts that accepts as input a string, and returns a dictionary where words are keys and the number of instances are values of counts of the words in the string.
 # Before counting, the function discards all non-alpha non-space characters, including punctuation, and is case-insensitive by lowering all characters.
 def word_counts(s: str) -> dict:
-    cleaned_string = clean(s)
-    words = cleaned_string.split()
-    counts = {}
-    for word in words:
-        if word in counts:
-            counts[word] += 1
-        else:
-            counts[word] = 1
+    cleaned_string = clean(s)  # clean the string
+    words = cleaned_string.split()  # split on whitespace char
+    counts = {}  # create an empty dictionary
+    for word in words:  # for each word in words
+        if word in counts:  # if key exists in counts dict
+            counts[word] += 1  # inrement the value by 1
+        else:  # if key does not exist
+            counts[word] = 1  # creates the key value pair and sets value to 1
     return counts
 
 
