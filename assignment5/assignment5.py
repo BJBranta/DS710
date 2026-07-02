@@ -167,7 +167,7 @@ ax.set_xlabel("Ranked Words (Top 20)")
 ax.set_ylabel("Frequency")
 fig.savefig(f"{last_name}_{first_name}_assign5_task4.png", dpi=300, bbox_inches="tight")
 
-
+# fmt: off
 # Task 5: Plotting Function Values
 # Subtask 5.1 - Make data
 x = np.linspace(0, 1, 100)
@@ -175,13 +175,12 @@ function_values = np.zeros((5, 100))
 function_values[0] = 2 * (x - 1 / 2)
 function_values[1] = (3**2 / 2) * (x - 1 / 3) * (x - 2 / 3)
 function_values[2] = (4**3 / (2 * 3)) * (x - 1 / 4) * (x - 2 / 4) * (x - 3 / 4)
-function_values[3] = (5**4 / (2 * 3 * 4)) * (
-    (x - 1 / 5) * (x - 2 / 5) * (x - 3 / 5) * (x - 4 / 5)
-)
-function_values[4] = (6**5 / (2 * 3 * 4 * 5)) * (
-    (x - 1 / 6) * (x - 2 / 6) * (x - 3 / 6) * (x - 4 / 6) * (x - 5 / 6)
-)
+# I had extra parentheses around the x terms which I think was causing the post submission error.
+function_values[3] = (5**4 / (2 * 3 * 4)) * (x - 1 / 5) * (x - 2 / 5) * (x - 3 / 5) * (x - 4 / 5)
+# I had extra parentheses around the x terms which I think was causing the post submission error.
+function_values[4] = (6**5 / (2 * 3 * 4 * 5)) * (x - 1 / 6) * (x - 2 / 6) * (x - 3 / 6) * (x - 4 / 6) * (x - 5 / 6)
 
+# fmt: on
 fig, ax = plt.subplots(1, 1)
 labels = ["f1", "f2", "f3", "f4", "f5"]
 for i in range(function_values.shape[0]):
