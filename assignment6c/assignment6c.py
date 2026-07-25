@@ -412,5 +412,5 @@ def process_gdp(filename: str):
 
 
 if __name__ == "__main__":
-    narrative_df, measures_df = process_gdp("gdp_report.pdf")
+    narrative_df, measures_df = process_gdp("assignment6c_data/gdp_report.pdf")
     print(gdp_summary(narrative_df, measures_df))
